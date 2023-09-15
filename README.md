@@ -22,15 +22,15 @@ structure. For example, implement an option `--dirPurgeLevel 4`, which would rem
 
 
 ### Build and install ###
-ppurge is a single C program. glib > 2.10 is required. ppurge needs root sticky
-bit to run. In practice pwalk should be run as root or as setuid. `sudo make install`
+ppurge is a single C program. glib > 2.10 is required. Use GCC 10 or greater for building.
+ppurge requires setuid root to run. In practice pwalk should be run as root. `sudo make install`
 changes owner to root and setuid. The executable is kept in place.
 
 make
 sudo make install
 
 ### Usage ###
-ppurge is designed to run daily on the same volume to remove files past a certain age. For example, the volume `/scratch/delete30` should not have files past 30 days.
+ppurge is designed to run daily on the same volume to remove files past a certain age. For example, the volume `/scratch/delete30` should not have files past 30 days. 
 Output is written in CSV format to stdout. Output is a list of all files that are purged or removed. The first character of each log line is 'P' or 'R', for Purged or Removed.
 Format of output: type, depth, fname, UID, GID, st_size, st_mode, atime, mtime, ctime
 ppurge creates a log file with the following name ppurge-YYYY.MM.DD-HH_MM_SS.log internal error messages.
